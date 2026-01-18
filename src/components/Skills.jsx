@@ -1,33 +1,39 @@
 const skills = {
-  frontend: ["JavaScript", "HTML", "CSS", "React.js"],
-  backend: ["Node.js", "Express.js"],
-  database: ["MongoDB"],
-  apiAuth: ["REST API", "JWT"],
-  tools: ["Git", "GitHub", "Postman", "VS Code"],
-}
+  "Frontend Development": ["JavaScript (ES6+)", "React.js", "HTML5", "CSS3", "Tailwind CSS"],
+  "Backend Development": ["Node.js", "Express.js", "REST APIs", "JWT Auth"],
+  "Database & Tools": ["MongoDB", "Git", "GitHub", "Postman", "VS Code"],
+};
 
 const Skills = () => {
   return (
-    <section className="py-24 px-6 bg-white dark:bg-gray-950">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-100 mb-12">
-          Skills
+    <section id="skills" className="py-24 px-6 relative bg-white dark:bg-gray-950">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Technical Skills
+          </span>
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-10">
-          {Object.entries(skills).map(([category, items]) => (
-            <div key={category}>
-              <h3 className="text-lg font-semibold tracking-tight text-gray-800 dark:text-gray-200 mb-5 capitalize">
+        <div className="grid md:grid-cols-3 gap-8">
+          {Object.entries(skills).map(([category, items], index) => (
+            <div
+              key={category}
+              className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 border border-gray-100 dark:border-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-4">
                 {category}
               </h3>
 
               <div className="flex flex-wrap gap-3">
-                {items.map(skill => (
+                {items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-4 py-2 bg-gray-100 dark:bg-gray-800
-                               text-gray-700 dark:text-gray-300
-                               rounded-lg text-sm tracking-wide"
+                    className="px-3 py-1.5 text-sm font-medium rounded-lg
+                             bg-white dark:bg-gray-800 
+                             text-gray-700 dark:text-gray-300
+                             border border-gray-200 dark:border-gray-700
+                             hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400
+                             transition-colors cursor-default"
                   >
                     {skill}
                   </span>
@@ -38,7 +44,7 @@ const Skills = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;

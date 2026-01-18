@@ -1,75 +1,98 @@
-import profile from "../assets/profile.png"
+import React from "react";
+import profile from "../assets/profile.png";
+import { ArrowRight, Download, Mail } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-24 md:pt-16 
-    bg-gradient-to-br from-gray-50 via-white to-gray-100
-    dark:from-gray-950 dark:via-gray-900 dark:to-gray-800">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-20 md:pt-20 overflow-hidden bg-gray-50 dark:bg-gray-950">
+      {/* Animated Background Blobs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-300 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[128px] opacity-70 animate-blob"></div>
+        <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-blue-300 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[128px] opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-pink-300 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[128px] opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
 
-        {/* TEXT */}
-        <div className="text-center md:text-left">
-          <span className="inline-block mb-4 px-4 py-1 text-sm font-medium text-gray-700 bg-gray-200 dark:text-gray-300 dark:bg-gray-800 rounded-full">
-            MERN Stack Developer
-          </span>
-          <h1 className="mt-2 text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
-            Hi, 👋 <br />
-             I’m Abdul Sathar 
+      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+        {/* Text Content */}
+        <div className="text-center md:text-left space-y-8 animate-fade-in-up">
+          <div className="inline-block relative">
+            <div className="absolute inset-0 bg-blue-600 blur opacity-20 rounded-full"></div>
+            <span className="relative px-4 py-2 text-sm font-semibold tracking-wide text-blue-700 bg-blue-50 dark:text-blue-300 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full uppercase">
+              MERN Stack Developer
+            </span>
+          </div>
+
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+            Building <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400">
+              Digital Experiences
+            </span>
           </h1>
 
-          <p className="mt-3 text-lg sm:text-xl text-gray-700 dark:text-gray-300">
-            Entry-Level MERN Stack Developer
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto md:mx-0">
+            Hi, I’m <span className="font-semibold text-gray-900 dark:text-white">Abdul Sathar</span>.
+            A passionate developer crafting robust, scalable, and user-centric web applications with the MERN stack.
           </p>
 
-          <p className="mt-5 text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl">
-            Self-taught MERN Stack Developer with hands-on experience building full-stack
-            applications using React, Node.js, Express, and MongoDB. Strong in REST APIs
-            and JWT authentication, with a focus on practical, real-world projects.
-          </p>
-
-          <div className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <a
               href="#projects"
-              className="w-full sm:w-auto px-6 py-3 bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-lg transition tracking-wide"
+              className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gray-900 rounded-xl hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
             >
               View Projects
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
 
             <a
               href="#contact"
-              className="w-full sm:w-auto px-6 py-3 border border-black hover:bg-black hover:text-white dark:border-gray-500 dark:text-gray-200 dark:hover:bg-white dark:hover:text-black rounded-lg transition tracking-wide"
+              className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-gray-900 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 dark:text-white dark:bg-white/10 dark:border-white/10 dark:hover:bg-white/20 backdrop-blur-sm transition-all shadow-sm hover:shadow-md"
             >
+              <Mail className="mr-2 w-5 h-5" />
               Contact Me
             </a>
 
             <a
               href="/Abdul_Sathar_KP.pdf"
               target="_blank"
-              className="w-full sm:w-auto px-6 py-3 bg-gray-100 text-gray-800 hover:bg-gray-200
-                         dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700
-                         rounded-lg transition tracking-wide"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 dark:text-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all"
             >
-              Download Resume
+              <Download className="mr-2 w-5 h-5" />
+              Resume
             </a>
           </div>
         </div>
 
-        {/* IMAGE */}
-        <div className="flex justify-center">
-          <div className="relative group w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-2xl ring-4 ring-gray-200 dark:ring-gray-700 ring-offset-4">
-            <img
-              src={profile}
-              alt="Abdul Sathar profile"
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 to-transparent dark:from-black/70" />
+        {/* Profile Image */}
+        <div className="relative flex justify-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <div className="relative w-72 h-72 sm:w-96 sm:h-96 animate-float">
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-pink-500 rounded-3xl blur-2xl opacity-40 dark:opacity-30 transform scale-110"></div>
+
+            {/* Image Container */}
+            <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/50 dark:border-white/10 shadow-2xl backdrop-blur-sm bg-white/30 dark:bg-black/30">
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-pink-500/10 mix-blend-overlay"></div>
+              <img
+                src={profile}
+                alt="Abdul Sathar"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+
+            {/* Floating Badge 1 */}
+            <div className="absolute -top-6 -right-6 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl shadow-black/5 animate-float" style={{ animationDelay: '1s' }}>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Open to work</span>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
     </section>
-  )
-}
+  );
+};
 
-
-export default Hero
+export default Hero;
