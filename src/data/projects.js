@@ -1,3 +1,6 @@
+import netmagic from "../assets/netmagic.png";
+import fintrack from "../assets/fintrack.png";
+
 const projects = [
   {
     title: "Income & Expense Tracker (MERN)",
@@ -6,8 +9,9 @@ const projects = [
     tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
     github: "https://github.com/satharkp/expense-frontend",
     live: "https://expense-frontend-five-rouge.vercel.app",
-    img: null, // Import image from assets and use here (e.g., img: project1)
+    img: fintrack,
   },
+
   {
     title: "NetMagic – Freelance Web App",
     description:
@@ -15,8 +19,8 @@ const projects = [
     tech: ["React.js", "CSS"],
     github: "https://github.com/satharkp",
     live: "https://newpro-indol.vercel.app",
-    img: null,
+    img: netmagic,
   },
-]
+];
 
-export default projects
+export default projects;
