@@ -1,85 +1,79 @@
-import { useEffect } from "react"
+import { useEffect, useRef, useState } from "react";
 
 const Cursor = () => {
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const requestRef = useRef(null);
+  const cursorRef = useRef({ x: 0, y: 0 });
+  const ringRefPos = useRef({ x: 0, y: 0 }); // Current interpolated position
+  const [hovering, setHovering] = useState(false);
+
   useEffect(() => {
-    const cursor = document.querySelector(".cursor")
-    const ring = document.querySelector(".cursor-ring")
-    const root = document.documentElement
-    const body = document.body
+    // 1. Mouse Move Handler - updates target position instantly
+    const onMouseMove = (e) => {
+      cursorRef.current = { x: e.clientX, y: e.clientY };
 
-    if (!cursor || !ring) return
-
-    // --- Move cursor ---
-    const move = (e) => {
-      cursor.style.top = `${e.clientY}px`
-      cursor.style.left = `${e.clientX}px`
-      ring.style.top = `${e.clientY}px`
-      ring.style.left = `${e.clientX}px`
-    }
-
-    // --- Hover states ---
-    const hoverOn = () => {
-      cursor.classList.add("cursor-hover")
-      ring.classList.add("cursor-ring-hover")
-    }
-
-    const hoverOff = () => {
-      cursor.classList.remove("cursor-hover")
-      ring.classList.remove("cursor-ring-hover")
-    }
-
-    // --- Dark mode sync (important) ---
-    const syncDarkMode = () => {
-      if (root.classList.contains("dark")) {
-        body.classList.add("dark-section")
-      } else {
-        body.classList.remove("dark-section")
+      // Update dot instantly
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
       }
-    }
+    };
 
-    // Initial sync
-    syncDarkMode()
+    // 2. Animation Loop - lerps ring position towards target
+    const animate = () => {
+      // Lerp factor (0.1 = slow/smooth, 0.2 = faster)
+      const ease = 0.15;
 
-    // Observe dark mode changes
-    const observer = new MutationObserver(syncDarkMode)
-    observer.observe(root, { attributes: true, attributeFilter: ["class"] })
+      const targetX = cursorRef.current.x;
+      const targetY = cursorRef.current.y;
 
-    window.addEventListener("mousemove", move)
+      // Calculate next position
+      ringRefPos.current.x += (targetX - ringRefPos.current.x) * ease;
+      ringRefPos.current.y += (targetY - ringRefPos.current.y) * ease;
 
-    const hoverTargets = document.querySelectorAll("a, button, img")
-
-    hoverTargets.forEach((el) => {
-      el.addEventListener("mouseenter", hoverOn)
-      el.addEventListener("mouseleave", hoverOff)
-
-      // Magnetic effect
-      const magnet = (e) => {
-        const rect = el.getBoundingClientRect()
-        const x = e.clientX - rect.left - rect.width / 2
-        const y = e.clientY - rect.top - rect.height / 2
-        el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`
+      // Apply to ring
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate(${ringRefPos.current.x}px, ${ringRefPos.current.y}px) translate(-50%, -50%)`;
       }
 
-      const reset = () => {
-        el.style.transform = "translate(0,0)"
-      }
+      requestRef.current = requestAnimationFrame(animate);
+    };
 
-      el.addEventListener("mousemove", magnet)
-      el.addEventListener("mouseleave", reset)
-    })
+    // 3. Hover Handlers
+    const onMouseEnter = () => setHovering(true);
+    const onMouseLeave = () => setHovering(false);
 
+    // Initial setup
+    window.addEventListener("mousemove", onMouseMove);
+    requestRef.current = requestAnimationFrame(animate);
+
+    // Add listeners to interactive elements
+    const interactiveElements = document.querySelectorAll("a, button, input, textarea");
+    interactiveElements.forEach((el) => {
+      el.addEventListener("mouseenter", onMouseEnter);
+      el.addEventListener("mouseleave", onMouseLeave);
+    });
+
+    // Cleanup
     return () => {
-      window.removeEventListener("mousemove", move)
-      observer.disconnect()
-    }
-  }, [])
+      window.removeEventListener("mousemove", onMouseMove);
+      cancelAnimationFrame(requestRef.current);
+      interactiveElements.forEach((el) => {
+        el.removeEventListener("mouseenter", onMouseEnter);
+        el.removeEventListener("mouseleave", onMouseLeave);
+      });
+    };
+  }, []); // Run once on mount due to specific DOM targeting strategy
+
+  // Re-attach listeners when DOM changes (optional, but good for SPAs)
+  // For simplicity keeping it simple; a real app might use a MutationObserver.
 
   return (
-    <>
-      <div className="cursor"></div>
-      <div className="cursor-ring"></div>
-    </>
-  )
-}
+    <div className={hovering ? "cursor-hover" : ""}>
+      <div ref={dotRef} className="cursor-dot"></div>
+      <div ref={ringRef} className="cursor-ring"></div>
+    </div>
+  );
+};
 
-export default Cursor
+export default Cursor;

@@ -19,23 +19,45 @@ body {
   cursor: none;
 }
 
-.cursor {
-  width: 10px;
-  height: 10px;
-  background-color: #111;
-  border-radius: 9999px;
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  /* Difference mode makes this invert colors */
+  border-radius: 50%;
   position: fixed;
   top: 0;
   left: 0;
+  transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.15s ease, background-color 0.2s ease;
+  mix-blend-mode: difference;
 }
 
-.cursor-hover {
-  transform: translate(-50%, -50%) scale(2);
-  background-color: #555;
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.cursor-hover .cursor-dot {
+  opacity: 0;
+}
+
+.cursor-hover .cursor-ring {
+  width: 64px;
+  height: 64px;
+  background-color: white;
+  mix-blend-mode: difference;
 }
 
 .animation-delay-2000 {

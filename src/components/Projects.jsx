@@ -17,11 +17,20 @@ const Projects = () => {
               key={index}
               className="group relative bg-white dark:bg-gray-950 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
-              {/* Optional: Add image here if available in data */}
-              <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center p-6">
-                <h3 className="text-2xl font-bold text-gray-400 dark:text-gray-600 opacity-20 transform -rotate-12 group-hover:rotate-0 group-hover:scale-110 transition-transform duration-500">
-                  {project.title}
-                </h3>
+              <div className="relative h-48 w-full overflow-hidden">
+                {project.img ? (
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="h-full w-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center p-6">
+                    <h3 className="text-2xl font-bold text-gray-400 dark:text-gray-600 opacity-20 transform -rotate-12 group-hover:rotate-0 group-hover:scale-110 transition-transform duration-500">
+                      {project.title}
+                    </h3>
+                  </div>
+                )}
               </div>
 
               <div className="p-8">
