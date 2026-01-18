@@ -3,7 +3,7 @@ import fintrack from "../assets/fintrack.png";
 
 const projects = [
   {
-    title: "Income & Expense Tracker (MERN)",
+    title: "FINTRACK- Income & Expense Tracker (MERN)",
     description:
       "A full-stack income and expense tracker with JWT authentication, role-based APIs, analytics, and CSV export. Deployed using MongoDB Atlas, Vercel, and Render.",
     tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
