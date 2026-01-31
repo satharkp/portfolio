@@ -1,5 +1,6 @@
 import netmagic from "../assets/netmagic.png";
 import fintrack from "../assets/fintrack.png";
+import knaqk from "../assets/knaqk.png";
 
 const projects = [
   {
@@ -21,6 +22,16 @@ const projects = [
     live: "https://newpro-indol.vercel.app",
     img: netmagic,
   },
+{
+  title: "KNAQK – Web Application",
+  description:
+    "KNAQK is a responsive React-based web application built for a real client, emphasizing a modern user interface, smooth user experience, and performance-focused design.",
+  tech: ["React.js", "CSS"],
+  github: "https://github.com/satharkp",
+  live: "https://knaqk.vercel.app/",
+  img: knaqk,
+},
+
 ];
 
 export default projects;
