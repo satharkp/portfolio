@@ -1,6 +1,7 @@
 import netmagic from "../assets/netmagic.png";
 import fintrack from "../assets/fintrack.png";
 import knaqk from "../assets/knaqk.png";
+import qrOrdering from "../assets/qr-ordering.png";
 
 const projects = [
   {
@@ -30,6 +31,15 @@ const projects = [
   github: "https://github.com/satharkp",
   live: "https://knaqk.vercel.app/",
   img: knaqk,
+},
+{
+  title: "QR Ordering System",
+  description:
+    "A full-stack restaurant management platform with a QR-based customer ordering interface, real-time socket notifications, Kitchen Page order tracking, and a Cashier dashboard.",
+  tech: ["React", "Node.js", "Socket.io", "Tailwind CSS"],
+  github: "https://github.com/satharkp",
+  live: "#",
+  img: qrOrdering,
 },
 
 ];
