@@ -13,20 +13,20 @@ const Hero = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
         {/* Text Content */}
-        <div className="text-center md:text-left space-y-6 sm:space-y-8 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold tracking-wide text-blue-700 bg-blue-500/10 dark:text-blue-300 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full uppercase shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse"></span>
-            MERN Stack Developer & Freelancer
+        <div className="text-center md:text-left space-y-5 sm:space-y-8 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 max-w-full px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold tracking-wide text-blue-700 bg-blue-500/10 dark:text-blue-300 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full uppercase shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse shrink-0"></span>
+            <span className="truncate">MERN Developer & Freelancer</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-[1.15]">
+          <h1 className="text-[28px] xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-[1.15]">
             Building <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-pink-600 dark:from-blue-400 dark:via-indigo-300 dark:to-pink-400">
               Digital Experiences
             </span>
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto md:mx-0">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto md:mx-0 px-1">
             Hi, I’m <span className="font-semibold text-gray-900 dark:text-white">Abdul Sathar</span>.
             A passionate developer crafting robust full-stack web applications, interactive 3D experiences, and high-conversion client websites.
           </p>
