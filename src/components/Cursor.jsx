@@ -1,72 +1,87 @@
 import { useEffect, useRef, useState } from "react";
 
+const isFinePointer = () =>
+  typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches;
+
 const Cursor = () => {
   const dotRef = useRef(null);
   const ringRef = useRef(null);
-  const requestRef = useRef(null);
-  const cursorRef = useRef({ x: 0, y: 0 });
-  const ringRefPos = useRef({ x: 0, y: 0 });
+  const rafRef = useRef(null);
+  const mouse = useRef({ x: -200, y: -200 });
+  const ring = useRef({ x: -200, y: -200 });
   const [hovering, setHovering] = useState(false);
-  const [isPointerFine, setIsPointerFine] = useState(false);
+
+  // ── Early exit on touch/coarse-pointer devices ──
+  // We initialise to true and set to false only if the media query says coarse.
+  // This prevents the "starts as null" flash.
+  const [visible, setVisible] = useState(() => isFinePointer());
 
   useEffect(() => {
-    // Only enable on desktop devices with a fine mouse pointer
-    const mediaQuery = window.matchMedia("(pointer: fine)");
-    setIsPointerFine(mediaQuery.matches);
+    const mq = window.matchMedia("(pointer: fine)");
 
-    if (!mediaQuery.matches) return;
+    // Update state whenever the media query changes (e.g. connecting a mouse)
+    const handleChange = (e) => setVisible(e.matches);
+    mq.addEventListener("change", handleChange);
 
-    const onMouseMove = (e) => {
-      cursorRef.current = { x: e.clientX, y: e.clientY };
+    // If not a fine pointer, bail out early
+    if (!mq.matches) {
+      setVisible(false);
+      return () => mq.removeEventListener("change", handleChange);
+    }
 
+    setVisible(true);
+
+    // ── Mouse tracking ──
+    const onMove = (e) => {
+      mouse.current = { x: e.clientX, y: e.clientY };
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+        dotRef.current.style.left = `${e.clientX}px`;
+        dotRef.current.style.top = `${e.clientY}px`;
       }
     };
 
+    // ── Smooth ring follow via rAF ──
     const animate = () => {
-      const ease = 0.15;
-      const targetX = cursorRef.current.x;
-      const targetY = cursorRef.current.y;
-
-      ringRefPos.current.x += (targetX - ringRefPos.current.x) * ease;
-      ringRefPos.current.y += (targetY - ringRefPos.current.y) * ease;
+      const ease = 0.12;
+      ring.current.x += (mouse.current.x - ring.current.x) * ease;
+      ring.current.y += (mouse.current.y - ring.current.y) * ease;
 
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${ringRefPos.current.x}px, ${ringRefPos.current.y}px) translate(-50%, -50%)`;
+        ringRef.current.style.left = `${ring.current.x}px`;
+        ringRef.current.style.top = `${ring.current.y}px`;
       }
-
-      requestRef.current = requestAnimationFrame(animate);
+      rafRef.current = requestAnimationFrame(animate);
     };
 
-    const onMouseEnter = () => setHovering(true);
-    const onMouseLeave = () => setHovering(false);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    rafRef.current = requestAnimationFrame(animate);
 
-    window.addEventListener("mousemove", onMouseMove);
-    requestRef.current = requestAnimationFrame(animate);
-
-    const interactiveElements = document.querySelectorAll("a, button, input, textarea");
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", onMouseEnter);
-      el.addEventListener("mouseleave", onMouseLeave);
+    // ── Hover detection on interactive elements ──
+    const onEnter = () => setHovering(true);
+    const onLeave = () => setHovering(false);
+    const targets = document.querySelectorAll("a, button, input, textarea, [role='button']");
+    targets.forEach((el) => {
+      el.addEventListener("mouseenter", onEnter);
+      el.addEventListener("mouseleave", onLeave);
     });
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      cancelAnimationFrame(requestRef.current);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", onMouseEnter);
-        el.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(rafRef.current);
+      mq.removeEventListener("change", handleChange);
+      targets.forEach((el) => {
+        el.removeEventListener("mouseenter", onEnter);
+        el.removeEventListener("mouseleave", onLeave);
       });
     };
   }, []);
 
-  if (!isPointerFine) return null;
+  if (!visible) return null;
 
   return (
     <div className={hovering ? "cursor-hover" : ""}>
-      <div ref={dotRef} className="cursor-dot"></div>
-      <div ref={ringRef} className="cursor-ring"></div>
+      <div ref={dotRef} className="cursor-dot" />
+      <div ref={ringRef} className="cursor-ring" />
     </div>
   );
 };
