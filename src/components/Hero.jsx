@@ -14,7 +14,7 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
         {/* Text Content */}
         <div className="text-center md:text-left space-y-5 sm:space-y-8 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 max-w-full px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold tracking-wide text-blue-700 bg-blue-500/10 dark:text-blue-300 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full uppercase shadow-xs">
+          <div className="inline-flex items-center gap-2 max-w-full px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold tracking-wide text-blue-700 bg-blue-50 dark:text-blue-200 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-700/80 rounded-full uppercase shadow-xs">
             <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse shrink-0"></span>
             <span className="truncate">MERN Developer & Freelancer</span>
           </div>
@@ -26,7 +26,7 @@ const Hero = () => {
             </span>
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto md:mx-0 px-1">
+          <p className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-200 leading-relaxed max-w-2xl mx-auto md:mx-0 px-1 font-normal">
             Hi, I’m <span className="font-semibold text-gray-900 dark:text-white">Abdul Sathar</span>.
             A passionate developer crafting robust full-stack web applications, interactive 3D experiences, and high-conversion client websites.
           </p>
@@ -42,7 +42,7 @@ const Hero = () => {
 
             <a
               href="#contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-7 py-3.5 text-sm font-semibold text-gray-800 bg-white border border-gray-200/80 rounded-xl hover:bg-gray-50 dark:text-gray-200 dark:bg-gray-900/80 dark:border-gray-800 dark:hover:bg-gray-800 backdrop-blur-sm transition-all shadow-xs hover:shadow-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-7 py-3.5 text-sm font-semibold text-gray-900 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 dark:text-white dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-850 backdrop-blur-sm transition-all shadow-xs hover:shadow-sm"
             >
               <Mail className="mr-2 w-4 h-4 text-blue-600 dark:text-blue-400" />
               Contact Me
@@ -52,7 +52,7 @@ const Hero = () => {
               href="/Abdul_Sathar_KP.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-5 sm:px-6 py-3.5 text-sm font-semibold text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 dark:text-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all border border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-5 sm:px-6 py-3.5 text-sm font-semibold text-gray-800 bg-gray-100 rounded-xl hover:bg-gray-200 dark:text-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all border border-transparent hover:border-gray-300 dark:hover:border-gray-600"
             >
               <Download className="mr-2 w-4 h-4" />
               Resume
@@ -60,7 +60,7 @@ const Hero = () => {
           </div>
 
           {/* Quick Highlight Chips */}
-          <div className="pt-2 sm:pt-4 flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-4 text-xs text-gray-500 dark:text-gray-400">
+          <div className="pt-2 sm:pt-4 flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-4 text-xs text-gray-600 dark:text-gray-300 font-medium">
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0" />
               <span>Full-Stack Architecture</span>
