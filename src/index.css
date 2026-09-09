@@ -4,6 +4,7 @@
 
 /* Global typography polish */
 html {
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -15,8 +16,10 @@ body {
 }
 
 /* Custom Cursor */
-body {
-  cursor: none;
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
 }
 
 .cursor-dot {

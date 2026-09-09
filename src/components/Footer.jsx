@@ -1,19 +1,58 @@
+import { ArrowUp, Github, Linkedin, Heart } from "lucide-react";
+
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-900 py-12">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="text-center md:text-left">
-          <p className="font-semibold text-gray-900 dark:text-white">
-            Abdul Sathar KP
-          </p>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Built with React.js & Tailwind CSS
-          </p>
+    <footer className="bg-white dark:bg-gray-950 border-t border-gray-200/60 dark:border-gray-900 py-12 px-6">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Brand */}
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
+            AS
+          </div>
+          <div>
+            <p className="font-bold text-gray-900 dark:text-white text-sm tracking-tight">
+              Abdul Sathar KP
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              MERN Stack & Frontend Engineer
+            </p>
+          </div>
         </div>
 
-        <p className="text-sm text-gray-400 dark:text-gray-600">
-          © {new Date().getFullYear()} All rights reserved.
-        </p>
+        {/* Navigation Quicklinks */}
+        <div className="flex items-center gap-6 text-xs font-medium text-gray-600 dark:text-gray-400">
+          <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            About
+          </a>
+          <a href="#skills" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            Skills
+          </a>
+          <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            Projects
+          </a>
+          <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            Contact
+          </a>
+        </div>
+
+        {/* Back to top & copyright */}
+        <div className="flex items-center gap-4">
+          <p className="text-xs text-gray-400 dark:text-gray-600">
+            © {new Date().getFullYear()} Abdul Sathar KP
+          </p>
+
+          <button
+            onClick={scrollToTop}
+            aria-label="Back to top"
+            className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-2xs hover:shadow-xs"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </button>
+        </div>
       </div>
     </footer>
   );
