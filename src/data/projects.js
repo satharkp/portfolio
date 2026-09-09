@@ -5,6 +5,15 @@ import qrOrdering from "../assets/qr-ordering.png";
 
 const projects = [
   {
+  title: "QR Ordering System",
+  description:
+    "A full-stack restaurant management platform with a QR-based customer ordering interface, real-time socket notifications, Kitchen Page order tracking, and a Cashier dashboard.",
+  tech: ["React", "Node.js", "Socket.io", "Tailwind CSS"],
+  github: "https://github.com/satharkp",
+  live: "https://qr-menu-frontend-eta.vercel.app/",
+  img: qrOrdering,
+ },
+  {
     title: "FINTRACK- Income & Expense Tracker (MERN)",
     description:
       "A full-stack income and expense tracker with JWT authentication, role-based APIs, analytics, and CSV export. Deployed using MongoDB Atlas, Vercel, and Render.",
@@ -32,15 +41,7 @@ const projects = [
   live: "https://knaqk.vercel.app/",
   img: knaqk,
 },
-{
-  title: "QR Ordering System",
-  description:
-    "A full-stack restaurant management platform with a QR-based customer ordering interface, real-time socket notifications, Kitchen Page order tracking, and a Cashier dashboard.",
-  tech: ["React", "Node.js", "Socket.io", "Tailwind CSS"],
-  github: "https://github.com/satharkp",
-  live: "#",
-  img: qrOrdering,
-},
+
 
 ];
 
